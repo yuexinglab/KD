@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>善意加分端</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+            background: #f7f7f7;
+            color: #222;
+        }
+
+        .box {
+            background: white;
+            padding: 22px;
+            border-radius: 18px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            margin-top: 20px;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 20px;
+            margin: 8px 0;
+        }
+
+        .task-box {
+            margin-top: 18px;
+            padding: 18px;
+            border-radius: 14px;
+            background: #fff8e1;
+            border: 1px solid #f0d98c;
+        }
+
+        .task-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #8d6e63;
+            margin-bottom: 8px;
+        }
+
+        .task-desc {
+            font-size: 18px;
+            color: #5d4037;
+            line-height: 1.8;
+        }
+
+        .tip {
+            font-size: 18px;
+            color: #444;
+            margin-top: 16px;
+            margin-bottom: 18px;
+            line-height: 1.8;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 140px;
+            font-size: 18px;
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            resize: vertical;
+        }
+
+        .upload-box {
+            margin-top: 14px;
+            padding: 14px;
+            border-radius: 12px;
+            background: #fafafa;
+            border: 1px dashed #ccc;
+        }
+
+        .upload-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .upload-tip {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        input[type="file"] {
+            width: 100%;
+            font-size: 17px;
+            padding: 10px;
+            border-radius: 10px;
+            background: white;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        button, a.button-link {
+            display: block;
+            width: 100%;
+            margin-top: 15px;
+            padding: 16px;
+            font-size: 22px;
+            border: none;
+            border-radius: 12px;
+            color: white;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            box-sizing: border-box;
+        }
+
+        button {
+            background: #2e7d32;
+        }
+
+        a.button-link.use-btn {
+            background: #e53935;
+        }
+
+        a.button-link.home-btn {
+            background: #1976d2;
+        }
+
+        a.button-link.logout-btn {
+            background: #757575;
+        }
+
+        .result-box {
+            margin-top: 24px;
+            padding: 18px;
+            border-radius: 14px;
+            background: #f5f5f5;
+        }
+
+        .encouragement {
+            font-size: 24px;
+            font-weight: bold;
+            line-height: 1.6;
+            margin-bottom: 14px;
+        }
+
+        .encouragement-success {
+            color: #2e7d32;
+        }
+
+        .encouragement-warn {
+            color: #ef6c00;
+        }
+
+        .status-line {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .type-line {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 12px 0 8px 0;
+        }
+
+        .result-list {
+            margin: 0 0 0 22px;
+            padding: 0;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        .result-list li {
+            margin: 6px 0;
+        }
+
+        .meta {
+            margin-top: 12px;
+            font-size: 16px;
+            color: #777;
+            line-height: 1.7;
+        }
+
+        .simple-message {
+            font-size: 20px;
+            line-height: 1.7;
+        }
+
+        @media (max-width: 640px) {
+            h1 {
+                font-size: 28px;
+            }
+
+            p,
+            .task-title,
+            .encouragement,
+            .status-line,
+            .type-line,
+            .section-title,
+            .simple-message {
+                font-size: 18px;
+            }
+
+            .task-desc,
+            .tip,
+            textarea,
+            .result-list {
+                font-size: 17px;
+            }
+
+            button, a.button-link {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>善意加分端</h1>
+
+        <p>当前账号：{{ username }}</p>
+        <p>当前善意分：{{ score }}</p>
+
+        <div class="task-box">
+            <div class="task-title">今日善意任务：{{ task_info.title }}</div>
+            <div class="task-desc">{{ task_info.description }}</div>
+        </div>
+
+        <div class="tip">
+            请写下你今天做的这件善意。<br>
+            可以再上传一张图片作为记录，但这一步仍然需要至少写一句说明。
+        </div>
+
+        <form method="POST" enctype="multipart/form-data">
+            <textarea name="good_deed" placeholder="例如：今天我提醒妈妈不要点击陌生短信里的链接，还告诉她验证码不能发给别人。"></textarea>
+
+            <div class="upload-box">
+                <div class="upload-title">上传图片（可选）</div>
+                <div class="upload-tip">图片这一版先作为辅助记录，后面会继续升级。</div>
+                <input type="file" name="image_file" accept="image/*">
+            </div>
+
+            <button type="submit">提交善意</button>
+        </form>
+
+        {% if good_result_data %}
+        <div class="result-box">
+            {% if score_added %}
+                <div class="encouragement encouragement-success">{{ good_result_data.encouragement }}</div>
+                <div class="status-line"><strong>结果：</strong>这条善意已通过，已获得 1 分。</div>
+            {% else %}
+                <div class="encouragement encouragement-warn">{{ good_result_data.encouragement }}</div>
+                <div class="status-line"><strong>结果：</strong>这条内容暂时还不能记分。</div>
+            {% endif %}
+
+            <div class="type-line">
+                <strong>善意类型：</strong>{{ good_result_data.kindness_type }}
+            </div>
+
+            <div class="section-title">为什么这样判断</div>
+            <ul class="result-list">
+                {% for item in good_result_data.reason %}
+                <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+
+            <div class="section-title">你可以怎么补充</div>
+            <ul class="result-list">
+                {% for item in good_result_data.suggestion %}
+                <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+
+            <div class="meta">
+                {{ score_result_text }}<br>
+                当前剩余善意分：{{ score }}
+                {% if uploaded_filename %}
+                <br>已记录图片：{{ uploaded_filename }}
+                {% endif %}
+            </div>
+        </div>
+
+        {% elif score_result_text %}
+        <div class="result-box">
+            <div class="simple-message">{{ score_result_text }}</div>
+        </div>
+        {% endif %}
+
+        <a class="button-link use-btn" href="/use/{{ username }}">去使用端</a>
+        <a class="button-link home-btn" href="/home/{{ username }}">返回选择页</a>
+        <a class="button-link logout-btn" href="/logout">退出账号</a>
+    </div>
+</body>
+</html>

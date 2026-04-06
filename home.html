@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>反诈虾 - 选择功能</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+            background: #f7f7f7;
+        }
+
+        .box {
+            background: white;
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            margin-top: 20px;
+        }
+
+        h1 {
+            font-size: 34px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 22px;
+            margin: 12px 0;
+        }
+
+        .tip {
+            font-size: 20px;
+            color: #333;
+            margin-top: 18px;
+            line-height: 1.8;
+        }
+
+        .button-link {
+            display: block;
+            width: 100%;
+            margin-top: 16px;
+            padding: 18px;
+            font-size: 24px;
+            border: none;
+            border-radius: 12px;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            box-sizing: border-box;
+        }
+
+        .use-btn {
+            background: #e53935;
+        }
+
+        .score-btn {
+            background: #2e7d32;
+        }
+
+        .logout-btn {
+            background: #757575;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>欢迎来到反诈虾</h1>
+
+        <p>当前账号：{{ username }}</p>
+        <p>当前善意分：{{ score }}</p>
+
+        <div class="tip">
+            做好事可以获得善意积分。<br>
+            使用反诈工具会消耗积分。
+        </div>
+
+        <a class="button-link use-btn" href="/use/{{ username }}">进入反诈使用端</a>
+        <a class="button-link score-btn" href="/score/{{ username }}">进入善意加分端</a>
+        <a class="button-link logout-btn" href="/logout">退出账号</a>
+    </div>
+</body>
+</html>

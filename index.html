@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>反诈虾首页</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+            background: #f7f7f7;
+        }
+
+        .box {
+            background: white;
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            margin-top: 20px;
+        }
+
+        h1 {
+            font-size: 32px;
+        }
+
+        p {
+            font-size: 18px;
+        }
+
+        .intro {
+            font-size: 20px;
+            line-height: 1.8;
+            color: #333;
+            margin: 20px 0;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            font-size: 18px;
+            border-radius: 12px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 15px;
+            padding: 16px;
+            font-size: 22px;
+            border: none;
+            border-radius: 12px;
+            background: #1976d2;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>反诈虾</h1>
+
+        <div class="intro">
+            做好事可以获得善意积分。<br>
+            使用反诈工具会消耗积分。
+        </div>
+
+        <p>请输入你的用户名，进入你的积分空间。</p>
+
+        <form method="POST">
+            <input type="text" name="username" placeholder="例如：luna1 或 mama" required>
+            <button type="submit">进入系统</button>
+        </form>
+    </div>
+</body>
+</html>
